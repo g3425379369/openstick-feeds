@@ -23,6 +23,8 @@ uci set network.modem.autoconnect='1'
 uci set network.modem.auto='1'
 uci del_list firewall.@zone[1].network='modem'
 uci add_list firewall.@zone[1].network='modem'
+uci del_list firewall.@zone[1].device='wwan0'
+uci add_list firewall.@zone[1].device='wwan0'
 uci commit
 
 # set dns
