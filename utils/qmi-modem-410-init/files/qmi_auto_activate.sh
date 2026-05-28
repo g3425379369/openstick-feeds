@@ -160,6 +160,15 @@ safe_sleep() {
             usleep "$usec" 2>/dev/null && return 0
         fi
     fi
+    # 有些系统 usleep 是 busybox applet，但没有独立 symlink。
+    if command -v busybox >/dev/null 2>&1; then
+        if command -v awk >/dev/null 2>&1; then
+            usec=$(awk -v s="$duration" 'BEGIN { printf "%d", s * 1000000 }')
+            if [ "$usec" -gt 0 ] 2>/dev/null; then
+                busybox usleep "$usec" 2>/dev/null && return 0
+            fi
+        fi
+    fi
     # 最后兜底
     sleep 1
 }
