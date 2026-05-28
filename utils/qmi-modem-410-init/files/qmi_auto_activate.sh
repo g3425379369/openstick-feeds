@@ -435,6 +435,6 @@ while true; do
     fi
 
     echo "监控进程已结束，原因: $restart_reason"
-    echo "5秒后重新启动监听..."
-    sleep 5
+    echo "1秒后重新启动监听..."
+    sleep 1
 done
