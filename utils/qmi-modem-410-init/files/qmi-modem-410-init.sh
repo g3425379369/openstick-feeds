@@ -268,6 +268,15 @@ reset_wf2_eps_apn() {
     fi
 }
 
+repower_sim() {
+    log "Repower Sim"
+    qmicli -d /dev/wwan0qmi0 -p --uim-sim-power-off=1
+    sleep 1
+    qmicli -d /dev/wwan0qmi0 -p --uim-sim-power-on=1
+    sleep 1
+    qmicli -d /dev/wwan0qmi0 -p --uim-reset
+}
+
 activate_sim() {
     log "Activating SIM for models matching: $ActiveSimModelKeyWords"
 
@@ -354,9 +363,9 @@ main() {
     sleep 1
 
     # Activate SIM if needed
-    if echo "$MODEL" | grep -qE "$ActiveSimModelKeyWords"; then
-        activate_sim
-    fi
+    #if echo "$MODEL" | grep -qE "$ActiveSimModelKeyWords"; then
+    #    activate_sim
+    #fi
 
     sleep 1
 
@@ -368,10 +377,12 @@ main() {
         log "AT port /dev/wwan0at1 not found, skipping SMS storage setup"
     fi
 
-    sleep 1
+    sleep 3
 
     # 安全执行 modem inhibit
-    run_mmcli_inhibit
+    #run_mmcli_inhibit
+
+    repower_sim
 
     log "QMI modem initialization completed"
     return 0
