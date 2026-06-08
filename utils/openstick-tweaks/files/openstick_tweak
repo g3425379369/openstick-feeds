@@ -46,3 +46,4 @@ sleep 5
 (apk info 2> /dev/null) > /etc/apk/world
 sleep 1
 apk del openstick-tweaks
+opkg remove openstick-tweaks
