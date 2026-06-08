@@ -43,4 +43,6 @@ sleep 5
 # echo -e '/etc/init.d/gc restart \n ' > /etc/rc.local
 # echo 'sleep 25 && /etc/init.d/network restart' > /etc/rc.local
 
+(apk info 2> /dev/null) > /etc/apk/world
+sleep 1
 apk del openstick-tweaks
