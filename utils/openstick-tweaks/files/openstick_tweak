@@ -45,6 +45,8 @@ sleep 5
 
 #(apk info 2> /dev/null) > /etc/apk/world
 #sleep 1
+service uhttpd enable
+service uhttpd restart
 mv /www/luci-static/resources/view/status/include/29_ports.js /www/luci-static/resources/view/status/include/29_ports.js.bak
 apk del openstick-tweaks
 opkg remove openstick-tweaks
