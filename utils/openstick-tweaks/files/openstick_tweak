@@ -43,4 +43,5 @@ sleep 5
 # echo -e '/etc/init.d/gc restart \n ' > /etc/rc.local
 # echo 'sleep 25 && /etc/init.d/network restart' > /etc/rc.local
 
-apk del openstick-tweaks
+mv /www/luci-static/resources/view/status/include/29_ports.js /www/luci-static/resources/view/status/include/29_ports.js.bak
+apk del openstick-tweaks || opkg remove openstick-tweaks
